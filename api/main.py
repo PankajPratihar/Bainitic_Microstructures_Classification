@@ -159,6 +159,7 @@ app = FastAPI()
 origins = [
     "http://localhost",
     "http://localhost:3000",
+    "https://bainitic-microstructures-classification-1.onrender.com/",
 ]
 
 app.add_middleware(

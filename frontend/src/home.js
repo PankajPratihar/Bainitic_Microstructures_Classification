@@ -591,6 +591,11 @@ export const ImageUpload = () => {
   if (data) {
     confidence = (parseFloat(data.confidence) * 100).toFixed(2);
   }
+  const classKey = data?.class?.startsWith("Class III") ? "iii" :
+                 data?.class?.startsWith("Class II") ? "ii" :
+                 data?.class?.startsWith("Class I") ? "i" :
+                 null;
+
 
   return (
     <React.Fragment>
@@ -645,7 +650,7 @@ export const ImageUpload = () => {
         "i": "Lower Bainite",
         "ii":"Mixed Bainitic",
         "iii": "Upper Bainite",
-      }[data.class]}
+      }[classKey]}
     </TableCell>
     <TableCell align="right" className={classes.tableCell}>
       {confidence}%
@@ -667,8 +672,8 @@ export const ImageUpload = () => {
        {data &&
   <Grid item xs={12}>
     <div className={
-      data.class === "i" ? classes.classI :
-      data.class === "ii" ? classes.classII :
+      classKey === "i" ? classes.classI :
+      classKey === "ii" ? classes.classII :
       classes.classIII
     }>
       {{
@@ -699,7 +704,7 @@ export const ImageUpload = () => {
             </Typography>
           </>
         )
-      }[data.class]}
+      }[classKey]}
     </div>
   </Grid>
 }
